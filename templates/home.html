@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1> Welcome Home! </h1>
+
+<form method="POST" action=""> {% csrf_token %}
+	{% if form.email.errors %}
+	    {% for err in form.email.errors %}
+	    <div class="alert alert-danger" role="alert">{{ err }}</div>
+	    <div class="alert alert-danger" role="alert">Your Email is required</div>
+	    {% endfor %}
+	{% endif %}
+    <input type="email" name="email" placeholder="Your email..." />
+	<!-- {{form.as_p}} -->
+	<input type="submit" value="join" class="btn" />
+</form>
+{% endblock %}
