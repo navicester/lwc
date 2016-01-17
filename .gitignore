@@ -64,7 +64,3 @@ docs/_build/
 
 # PyBuilder
 target/
-
-lwc.sublime-project
-lwc.sublime-workspace
-*.pyc
