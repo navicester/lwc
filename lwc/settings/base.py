@@ -15,6 +15,7 @@ DATABASES = {
         'PORT': '',                      # Set to empty string for default.
     }
 }
+print 'static root is ' + STATIC_ROOT
 
 '''
 DEBUG = True
