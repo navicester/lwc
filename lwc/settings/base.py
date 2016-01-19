@@ -4,6 +4,9 @@ from lwc.settings_old import *
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
 
+databaseType = "mysql"
+
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
@@ -15,7 +18,7 @@ DATABASES = {
         'PORT': '',                      # Set to empty string for default.
     }
 }
-print 'static root is ' + STATIC_ROOT
+
 
 '''
 DEBUG = True

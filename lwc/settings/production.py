@@ -14,16 +14,31 @@ DATABASES['default'] =  dj_database_url.config()
 if len(DATABASES['default']) == 0:
 	DATABASES = {
 	    'default': {
-	        'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-	        'NAME': 'dbv6n78stkmeqg',                      # Or path to database file if using sqlite3.
+	        'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+	        'NAME': 'lwc',                      # Or path to database file if using sqlite3.
 	        # The following settings are not used with sqlite3:
-	        'USER': 'ntccscinrvwneo',
-	        'PASSWORD': '5432',
+	        'USER': 'postgres',
+	        'PASSWORD': '123',
 	        'HOST': '',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
 	        'PORT': '',                      # Set to empty string for default.
 	    }
 	}
+	print "use postgresql_psycopg2 local "
+else:
+	DATABASES = {
+	    'default': {
+	        'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+	        'NAME': 'dbv6n78stkmeqg',                      # Or path to database file if using sqlite3.
+	        # The following settings are not used with sqlite3:
+	        'USER': 'ntccscinrvwneo',
+	        'PASSWORD': ' TJG0ByhrZ5f412ZR6u4AnWUQoy',
+	        'HOST': '',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
+	        'PORT': '5432',                      # Set to empty string for default.
+	    }
+	}
+	print "use postgresql_psycopg2 server"
 
+print "len(DATABASES['default']) is : %s" % len(DATABASES['default'])
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
