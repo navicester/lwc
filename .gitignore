@@ -8,6 +8,7 @@ lwc.sublime-workspace
 #.gitignore
 .DS_Store
 db.sqlite3
+lwc.db
 #lwc/settings/local.py
 
 
