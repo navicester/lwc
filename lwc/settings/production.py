@@ -22,7 +22,7 @@ if len(DATABASES['default']) == 0:
 				'NAME': os.path.join(os.path.dirname(os.path.dirname(__file__)),'lwc.db'),                      # Or path to database file if using sqlite3.
 			}
 		}
-		print "use mysql local "
+		print "use mysql local %s" % os.path.join(os.path.dirname(os.path.dirname(__file__)),'lwc.db') 
     elif DATABASE_TYPE == 'sqlite3':
 		DATABASES = {
 			'default': {
@@ -57,7 +57,7 @@ else:
 				'NAME': os.path.join(os.path.dirname(os.path.dirname(__file__)),'lwc.db'),                      # Or path to database file if using sqlite3.
 			}
 		}
-		print "use sqlite3 server"
+		print "use sqlite3 server %s" % os.path.join(os.path.dirname(os.path.dirname(__file__)),'lwc.db')
     else:
 		DATABASES = {
 			'default': {
