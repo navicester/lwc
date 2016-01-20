@@ -22,6 +22,20 @@ if len(DATABASES['default']) == 0:
 				'NAME': os.path.join(os.path.dirname(os.path.dirname(__file__)),'lwc.db'),                      # Or path to database file if using sqlite3.
 			}
 		}
+		print "use mysql local "
+    elif DATABASE_TYPE == 'sqlite3':
+		DATABASES = {
+			'default': {
+				'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+				'NAME': 'lwc',                      # Or path to database file if using sqlite3.
+				# The following settings are not used with sqlite3:
+				'USER': 'root',
+				'PASSWORD': ' 123',
+				'HOST': '',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
+				'PORT': '',                      # Set to empty string for default.
+			}
+		}
+		print "use mysql local "
     else:
 		DATABASES = {
 			'default': {
@@ -34,7 +48,7 @@ if len(DATABASES['default']) == 0:
 				'PORT': '',                      # Set to empty string for default.
 			}
 		}
-    print "use postgresql_psycopg2 local "
+		print "use postgresql_psycopg2 local "
 else:
     if DATABASE_TYPE == 'sqlite3':
 		DATABASES = {
@@ -43,6 +57,7 @@ else:
 				'NAME': os.path.join(os.path.dirname(os.path.dirname(__file__)),'lwc.db'),                      # Or path to database file if using sqlite3.
 			}
 		}
+		print "use sqlite3 server"
     else:
 		DATABASES = {
 			'default': {
@@ -55,7 +70,8 @@ else:
 				'PORT': '5432',                      # Set to empty string for default.
 			}
 		}
-	print "use postgresql_psycopg2 server"
+		print "use postgresql_psycopg2 server"
+	
 
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
