@@ -18,3 +18,5 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 ALLOWED_HOSTS = ['*']
 
 SHARE_URL = "http://launchwithcode.com/?ref="
+
+print STATIC_ROOT
