@@ -7,9 +7,9 @@ lwc.sublime-workspace
 
 #.gitignore
 .DS_Store
-db.sqlite3
+lwc.sqlite3
 lwc.db
-#lwc/settings/local.py
+lwc/settings/local.py
 
 
 # Byte-compiled / optimized / DLL files

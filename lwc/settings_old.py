@@ -7,8 +7,21 @@ ADMINS = (
     # ('Your Name', 'your_email@example.com'),
 )
 
+import os
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+
 MANAGERS = ADMINS
 
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': os.path.join(BASE_DIR,'lwc.sqlite3'), 
+    }
+}
+
+print DATABASES
+
+'''
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
@@ -20,9 +33,7 @@ DATABASES = {
         'PORT': '',                      # Set to empty string for default.
     }
 }
-
-import os
-BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+'''
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
@@ -124,7 +135,7 @@ TEMPLATE_DIRS = (
 # print TEMPLATE_DIRS
 
 INSTALLED_APPS = (
-    #'joins',
+    'joins',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
