@@ -1,8 +1,8 @@
-from lwc.settings_old import *
+#from lwc.settings_old import *
 
 # Django settings for lwc project.
 
-'''
+
 import os
 #BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
@@ -60,7 +60,7 @@ WSGI_APPLICATION = 'lwc.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(os.path.dirname(os.path.dirname(__file__)),'lwc.db'),
+        'NAME': os.path.join(os.path.dirname(os.path.dirname(__file__)),'lwc.sqlite3'),
     }
 }
 
@@ -73,21 +73,14 @@ TIME_ZONE = 'America/Chicago'
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR,"templates")
 )
+
 SHARE_URL = "http://127.0.0.1:8000/?ref="
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static','static_root')
-STATIC_URL = '/static_lwc/'
+STATIC_URL = '/static/'
 
-MEDIA_URL = '/media_lwc/'
+MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static','media')
-
-ADMINS = (
-    # ('Your Name', 'your_email@example.com'),
-)
-
-MANAGERS = ADMINS
-
-SITE_ID = 1
 
 # Additional locations of static files
 STATICFILES_DIRS = (
@@ -96,6 +89,15 @@ STATICFILES_DIRS = (
     # Don't forget to use absolute paths, not relative paths.
     os.path.join(BASE_DIR, 'static','static_dirs'),
 )
+
+'''
+ADMINS = (
+    # ('Your Name', 'your_email@example.com'),
+)
+
+MANAGERS = ADMINS
+
+SITE_ID = 1
 
 # List of finder classes that know how to find static files in
 # various locations.
