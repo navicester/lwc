@@ -1,11 +1,11 @@
 
-
+import os
 def GetDATABASES(DATABASE_TYPE, DATABASE_NAME, DATABASE_USER='', DATABASE_PWD='', DATABASE_HOST='', DATABASE_PORT=''):
     if DATABASE_TYPE == 'sqlite3':
 		DATABASES = {
 			'default': {
 				'ENGINE': 'django.db.backends.sqlite3',
-				'NAME': os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__)),DATABASE_NAME), 
+				'NAME': os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))),DATABASE_NAME), 
 			}
 		}
 		print "use sqlite3 %s" % os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), DATABASE_NAME) 
@@ -33,8 +33,8 @@ def GetDATABASES(DATABASE_TYPE, DATABASE_NAME, DATABASE_USER='', DATABASE_PWD=''
 			}
 		}
 		print "use postgresql_psycopg2"
-	print DATABASES
-	return DATABASES
+    print DATABASES
+    return DATABASES
 
 '''
 DATABASE_TYPE = 'sqlite3'

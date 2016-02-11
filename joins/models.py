@@ -11,7 +11,7 @@ class Join(models.Model):
 	updated = models.DateTimeField(auto_now_add = False, auto_now = True)
 
 	def __unicode__(self):
-		return "%s" %(self.email)
+		return "%s %s" %(self.email, self.ref_id)
 	
 	class Meta:
 		unique_together = ("email", "ref_id",)
