@@ -23,8 +23,7 @@ TEMPLATE_DEBUG = DEBUG
 ALLOWED_HOSTS = []
 
 # print TEMPLATE_DIRS
-INSTALLED_APPS = (
-    'joins',
+INSTALLED_APPS = (    
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -35,7 +34,8 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     'django.contrib.admindocs',
-    'south'
+    'south',
+    'joins',
 )
 
 MIDDLEWARE_CLASSES = (
