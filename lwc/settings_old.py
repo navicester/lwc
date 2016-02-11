@@ -124,7 +124,7 @@ TEMPLATE_DIRS = (
 # print TEMPLATE_DIRS
 
 INSTALLED_APPS = (
-    'joins',
+    #'joins',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
