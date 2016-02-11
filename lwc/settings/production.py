@@ -55,6 +55,7 @@ else:
 			'default': {
 				'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
 				'NAME': os.path.join(os.path.dirname(os.path.dirname(__file__)),'lwc.db'),                      # Or path to database file if using sqlite3.
+				#'NAME': '/app/lwc/lwc.db',
 			}
 		}
 		print "use sqlite3 server %s" % os.path.join(os.path.dirname(os.path.dirname(__file__)),'lwc.db')
@@ -72,7 +73,7 @@ else:
 		}
 		print "use postgresql_psycopg2 server"
 	
-
+print "DATABASES:" + str(DATABASES)
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
