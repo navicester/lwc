@@ -15,7 +15,7 @@ urlpatterns = patterns('',
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
     # Uncomment the next line to enable the admin:
-    url(r'^admin/', include(admin.site.urls)),
+    url(r'^admin/*', include(admin.site.urls)), #add this *, otherwise, /admin will go to below next urlPattern, * means repeating precious char (0~n) 
 
     url(r'^(?P<ref_id>.*)$', 'joins.views.share', name='share'),
 )
