@@ -90,14 +90,15 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static','static_dirs'),
 )
 
-'''
+SITE_ID = 1
+
+#https://docs.djangoproject.com/en/1.9/ref/settings/
+
 ADMINS = (
-    # ('Your Name', 'your_email@example.com'),
+    ('navicester', 'navicester@qq.com'),
 )
 
 MANAGERS = ADMINS
-
-SITE_ID = 1
 
 # List of finder classes that know how to find static files in
 # various locations.
@@ -145,4 +146,3 @@ LOGGING = {
         },
     }
 }
-'''
