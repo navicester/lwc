@@ -14,7 +14,7 @@ DATABASE_TYPE = 'sqlite3'
 
 print "len(DATABASES['default']) is : %s" % len(DATABASES['default'])
 
-if len(DATABASES['default']) == 0:
+if len(DATABASES['default']) == 0: # local
     if DATABASE_TYPE == 'sqlite3':
 		DATABASES = {
 			'default': {
@@ -23,7 +23,7 @@ if len(DATABASES['default']) == 0:
 			}
 		}
 		print "use mysql local %s" % os.path.join(os.path.dirname(os.path.dirname(__file__)),'lwc.db') 
-    elif DATABASE_TYPE == 'sqlite3':
+    elif DATABASE_TYPE == 'mysql':
 		DATABASES = {
 			'default': {
 				'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
@@ -36,7 +36,7 @@ if len(DATABASES['default']) == 0:
 			}
 		}
 		print "use mysql local "
-    else:
+    else: #psycopg2
 		DATABASES = {
 			'default': {
 				'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
@@ -58,7 +58,7 @@ else:
 			}
 		}
 		print "use sqlite3 server %s" % os.path.join(os.path.dirname(os.path.dirname(__file__)),'lwc.db')
-    else:
+    else: #psycopg2
 		DATABASES = {
 			'default': {
 				'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
