@@ -5,12 +5,13 @@ lwc.sublime-workspace
 .pydevproject
 .project
 
+
 #.gitignore
 .DS_Store
 lwc.sqlite3
 lwc.db
 lwc/settings/local.py
-
+static_root/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
