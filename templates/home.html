@@ -6,7 +6,7 @@
   <style>
       body {
         border-top: 4px solid #E47541;
-        /*min-height: 5000px;
+        /*min-height: 5000px;*/
         /*min-width: 5000px;*/
         background: url('{% static "img/beach.jpg" %}') no-repeat center center fixed;
         -webkit-background-size: cover;
@@ -24,22 +24,22 @@
 {% block content %}
 
     <!-- Main jumbotron for a primary marketing message or call to action -->
-    <div class="jumbotron" style="background-color:white">
+    <div class="jumbotron" style='background-color:white;'>
       <div class="container">
-        <div class="col-sm-6">
+        <div class='col-sm-6'>
           <h1>Hello, world!</h1>
           <p>Use it as a starting point to create something more unique.</p>
-          <p><a class="btn btn-default btn-lg  btn-block" href="#signup" role="button">Be First &raquo;</a></p>
+          <p><a class="btn btn-default btn-lg  btn-block" href='#signup' role="button">Be First &raquo;</a></p>
         </div>
-        <div class="col-sm-6">
-          <img src = "{% static 'img/iphone.png' %}" class = "img-responsive" />
+        <div class='col-sm-6'>
+          <img src = "{% static 'img/iphone.png' %}" class = 'img-responsive' />
         </div>
       </div>
     </div>
 
 <div class='container' style='text-align:center;color:#E47541;' id="signup" >
   <div class='col-sm-6 col-sm-offset-3'>
-
+    <i class="fa fa-unlock fa-5x"></i>
     <h1> Unlock First </h1>
 
     <form class='form-horizontal' method="POST" action=""> {% csrf_token %}
