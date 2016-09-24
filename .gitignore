@@ -13,6 +13,7 @@ lwc.db
 lwc/settings/local.py
 static_root/
 
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
