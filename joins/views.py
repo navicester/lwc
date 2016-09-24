@@ -58,30 +58,31 @@ def home(request):
 
 def share(request, ref_id):
 
-    try:
-		join_obj = Join.objects.get(ref_id=ref_id)
-		#Exception Type: 	DoesNotExist
-		#Exception Value: 	Join matching query does not exist.
+    # try:
+		# join_obj = Join.objects.get(ref_id=ref_id)
+		# #Exception Type: 	DoesNotExist
+		# #Exception Value: 	Join matching query does not exist.
 		
-		#join_obj = Join.objects.filter(ref_id=ref_id)[0]
+		# #join_obj = Join.objects.filter(ref_id=ref_id)[0]
 		
-		# htmlcontent = "<html>"
-		# for instance in join_obj:
-		#     htmlcontent += "%s" % (instance)
-		# htmlcontent += "</html>"
-		# return HttpResponse(htmlcontent)
-    except:
-	    raise Http404
+		# # htmlcontent = "<html>"
+		# # for instance in join_obj:
+		# #     htmlcontent += "%s" % (instance)
+		# # htmlcontent += "</html>"
+		# # return HttpResponse(htmlcontent)
+    # except:
+	    # raise Http404
 
-    friends_referred = Join.objects.filter(friend=join_obj)
-    count = join_obj.referral.all().count()
-    #Exception Value: 	'QuerySet' object has no attribute 'referral'
-    #count = friends_referred.all().count()
-    ref_url = settings.SHARE_URL + str(join_obj.ref_id)
+    # friends_referred = Join.objects.filter(friend=join_obj)
+    # count = join_obj.referral.all().count()
+    # #Exception Value: 	'QuerySet' object has no attribute 'referral'
+    # #count = friends_referred.all().count()
+    # ref_url = settings.SHARE_URL + str(join_obj.ref_id)
 
-    context = {"ref_id": join_obj.ref_id, "count": count, "ref_url": ref_url}
-    template = "share.html"
-    return render(request, template, context)	
+    # context = {"ref_id": join_obj.ref_id, "count": count, "ref_url": ref_url}
+    # template = "share.html"
+    # return render(request, template, context)	
+	
     try:
         join_obj = Join.objects.get(ref_id=ref_id)
         friends_referred = Join.objects.filter(friend=join_obj)
