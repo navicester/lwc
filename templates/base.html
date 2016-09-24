@@ -51,16 +51,42 @@
 	.navbar-inverse .navbar-brand, .navbar-brand:hover{
 	color:white;
 	}
+
+  .featured-row {
+    text-align:center;
+    background-color:white;
+    min-height:200px;
+    padding:40px 0;
+    border-bottom: 1px solid #EEE;
+  }
+  
+  .navbar-inverse {
+  background-color: #E47541 !important;
+  border-color: #E47541 !important;
+  }
+
+  .jumbotron h1 {
+    font-weight: 100;
+  }
+
+  .jumbotron p {
+    font-weight: 100;
+    font-size: 30px;
+  }
+
+
 	
 	</style>
+
+  {% block styles %}
+  {% endblock %}
+
   </head>
 
   <body>
 
       {% block content %}
       {% endblock %}
-
-      <hr>
 
       <footer>
         <p>&copy; 2015 Company, Inc.</p>
