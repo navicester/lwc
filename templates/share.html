@@ -76,31 +76,36 @@ if ($signUpCount == 0){
     <div class="jumbotron">
       <div class="container">
 	    <div class='row'>
-          <div class="col-md-6 pull-right" style="text-align:center" >
+          <div class='col-md-6 pull-right' style='text-align:center;' >
 		  <i class="fa fa-share-alt fa-5x"></i>
-            <h1>Inivte Friend &amp; Earn Rewards</h1>
-            <p>Share your unique link below via Email, Facebook, Twitter, Reddit, or LinkedIn to earn rewards from LaunchWithCode.com</p>
-			<div class='well' style='background-color:white'>{{ref_url}}</div>
+            <h1>Invite Friends &amp;<br/> Earn Rewards</h1>
+            <p>Share your unique link below via Email, Facebook, Twitter, Reddit, or LinkedIn to earn rewards from LaunchWithCode.com.</p>
+			<div class='well' style='background-color:white;'>{{ref_url}}</div>
 			Share<br/>
 
 			<a href="https://www.facebook.com/sharer/sharer.php?u={{ ref_url }}" target="_blank">
-			<i class="fa fa-facebook-square fa-4x" style="color:#213E75"></i></a>
+			<i class="fa fa-facebook-square fa-4x" style="color:#213E75"></i>
+			</a>
 			<a href="https://twitter.com/home?status=Hello%20this%20is%20a%20%23tag%20that%20I%20want%20to%20share%20at%20some%20point.%20Tweet%20%40justinmitchel.%20{{ ref_url }}" target="_blank">
-			<i class="fa fa-twitter-square fa-4x" style="color:#D42665"></i></a>
+			<i class="fa fa-twitter-square fa-4x" style="color:#D42665"></i>
+			</a>
 			<a href="https://www.linkedin.com/shareArticle?mini=true&url={{ref_url}}&title=Hello%20this%20this%20is%20a%20title.&summary=Hello%20this%20this%20is%20a%20title.&source={{ ref_url }}" target="_blank">
 			<i class="fa fa-linkedin-square fa-4x" style="color:#5413B9"></i></a>
 			<a href="http://www.reddit.com/submit?url={{ ref_url }}&title=Hello%20this%20this%20is%20a%20title." target="_blank">
-			<i class="fa fa-reddit-square fa-4x" style="color:#75213F"></i></a>
+			<i class="fa fa-reddit-square fa-4x" style="color:#75213F"></i>
+			</a>
 
 			<a href="http://v.t.sina.com.cn/share/share.php?title=%E4%BD%A0%E5%A5%BD%20hello%20world&url={{ ref_url }}" target="_blank">
-			<i class="fa fa-weibo  fa-4x" aria-hidden="true"></i></a>
+			<i class="fa fa-weibo  fa-4x" aria-hidden="true"></i>
+			</a>
 
 			<a href="http://v.t.sina.com.cn/share/share.php?title=%E4%BD%A0%E5%A5%BD%20hello%20world&url={{ ref_url }}" target="_blank">
-			<i class="fa fa-weixin  fa-4x" aria-hidden="true"  style="color:#357521"></i></a>
+			<i class="fa fa-weixin  fa-4x" aria-hidden="true"  style="color:#357521"></i>
+			</a>
 
           </div>
           <div class='col-md-6 pull-left'>
-            <img src = "{% static 'img/launch.jpg' %}" class = img-responsive img-rounded' />
+            <img src = "{% static 'img/launch.jpg' %}" class = 'img-responsive img-rounded' />
           </div>
 	    </div>
 
@@ -114,75 +119,83 @@ if ($signUpCount == 0){
 		<div class="col-sm-3">
 		    <h3>5 Joined</h3>
 			<div class="progress">
-			  <div class="progress-bar" id='count5' role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+			  <div class="progress-bar" id='count5' role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
 				0%
 			  </div>
 			</div>
-			<h4>Rewards Name</h4>
-			<img src="http://www.icon100.com/up/4257/72/BattleNet.png"/>
-			<img src="http://www.icon100.com/up/4252/72/32-extraterrestrial-head.png"/>
+			<h4>Reward Name</h4>
+			<!-- <img src="http://www.icon100.com/up/4257/72/BattleNet.png"/>
+			<img src="http://www.icon100.com/up/4252/72/32-extraterrestrial-head.png"/> -->
+			<img src="https://cfe-static.s3.amazonaws.com/static/img/ico/apple-touch-icon-72-precomposed.png" />
+			<img src="https://cfe-static.s3.amazonaws.com/static/img/ico/apple-touch-icon-72-precomposed.png" />
 			<hr/>
-			<span style="text-align:left!important">
+			<span style='text-align:left !important;'>
 			<h5>Rewards Include:</h5>
 			  <ul>
 				  <li> Reward 1</li>
 				  <li> Reward 2</li>
 			  </ul>
 			</span>
-			<hr>		
+			<hr/>		
 		</div>
 		<div class="col-sm-3">
 		    <h3>15 Joined</h3>
 			<div class="progress">
-			  <div class="progress-bar"  id="count15" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+			  <div class="progress-bar"  id="count15" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
 				0%
 			  </div>
 			</div>
-			<h4>Rewards Name</h4>
-			<img src="http://www.icon100.com/up/4257/72/BattleNet.png"/>
-			<img src="http://www.icon100.com/up/4252/72/32-extraterrestrial-head.png"/>
+			<h4>Reward Name</h4>
+			<!-- <img src="http://www.icon100.com/up/4257/72/BattleNet.png"/>
+			<img src="http://www.icon100.com/up/4252/72/32-extraterrestrial-head.png"/> -->
+			<img src="https://cfe-static.s3.amazonaws.com/static/img/ico/apple-touch-icon-72-precomposed.png" />
+			<img src="https://cfe-static.s3.amazonaws.com/static/img/ico/apple-touch-icon-72-precomposed.png" />
 			<hr/>
-			<span style="text-align:left!important">
+			<span style='text-align:left !important;'>
 			<h5>Rewards Include:</h5>
 			  <ul>
 				  <li> Reward 1</li>
 				  <li> Reward 2</li>
 			  </ul>
 			</span>
-			<hr>		
+			<hr/>		
 		</div>
 		<div class="col-sm-3">
 		    <h3>25 Joined</h3>
 			<div class="progress">
-			  <div class="progress-bar" id="count25" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+			  <div class="progress-bar" id="count25" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
 				0%
 			  </div>
 			</div>
-			<h4>Rewards Name</h4>
-			<img src="http://www.icon100.com/up/4257/72/BattleNet.png"/>
-			<img src="http://www.icon100.com/up/4252/72/32-extraterrestrial-head.png"/>
+			<h4>Reward Name</h4>
+			<!-- <img src="http://www.icon100.com/up/4257/72/BattleNet.png"/>
+			<img src="http://www.icon100.com/up/4252/72/32-extraterrestrial-head.png"/> -->
+			<img src="https://cfe-static.s3.amazonaws.com/static/img/ico/apple-touch-icon-72-precomposed.png" />
+			<img src="https://cfe-static.s3.amazonaws.com/static/img/ico/apple-touch-icon-72-precomposed.png" />
 			<hr/>
-			<span style="text-align:left!important">
+			<span style='text-align:left !important;'>
 			<h5>Rewards Include:</h5>
 			  <ul>
 				  <li> Reward 1</li>
 				  <li> Reward 2</li>
 			  </ul>
 			</span>
-			<hr>		
+			<hr/>		
 		</div>
 		<div class="col-sm-3">
 		    <h3>50 Joined</h3>
 			<div class="progress">
-			  <div class="progress-bar"  id="count50" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+			  <div class="progress-bar"  id="count50" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
 				0%
 			  </div>
 			</div>
-			<h4>Rewards Name</h4>
-			<img src="http://www.icon100.com/up/4257/72/BattleNet.png"/>
-			<img src="http://www.icon100.com/up/4252/72/32-extraterrestrial-head.png"/>
+			<h4>Reward Name</h4>
+			<!-- <img src="http://www.icon100.com/up/4257/72/BattleNet.png"/>
+			<img src="http://www.icon100.com/up/4252/72/32-extraterrestrial-head.png"/> -->
+			<img src="https://cfe-static.s3.amazonaws.com/static/img/ico/apple-touch-icon-72-precomposed.png" />
+			<img src="https://cfe-static.s3.amazonaws.com/static/img/ico/apple-touch-icon-72-precomposed.png" />
 			<hr/>
-			<span style="text-align:left!important">
+			<span style='text-align:left !important;'>
 			<h5>Rewards Include:</h5>
 			  <ul>
 				  <li> Reward 1</li>
