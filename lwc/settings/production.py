@@ -16,4 +16,4 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 # Allow all host headers
 ALLOWED_HOSTS = ['*']
 
-SHARE_URL = "http://launchwithcode.com/?ref="
+SHARE_URL = "https://lwc-ws.herokuapp.com/?ref="

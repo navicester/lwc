@@ -7,11 +7,12 @@ lwc.sublime-workspace
 
 
 #.gitignore
+static_root/
 .DS_Store
 lwc.sqlite3
 lwc.db
 lwc/settings/local.py
-static_root/
+test/
 
 
 # Byte-compiled / optimized / DLL files
