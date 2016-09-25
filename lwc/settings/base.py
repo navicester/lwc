@@ -14,7 +14,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '2chcj(@varnv-ur^c55fdac@p0jg51kpz@ct^^vx%+r&@ard@k'
 
-DEBUG = False
+DEBUG = True
 TEMPLATE_DEBUG = True
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
