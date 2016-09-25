@@ -20,6 +20,6 @@ urlpatterns = patterns('',
     url(r'^(?P<ref_id>.*)$', 'joins.views.share', name='share'),
 )
 
-handler404 = 'joins.views.server_error'
-handler403 = 'joins.views.server_error'
-handler500 = 'joins.views.server_error'
+# handler404 = 'joins.views.server_error'
+# handler403 = 'joins.views.server_error'
+# handler500 = 'joins.views.server_error'
