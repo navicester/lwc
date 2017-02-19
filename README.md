@@ -242,6 +242,66 @@ action 是url
 
 form可以用non-Model form或者model form
 
+# 08 Make changes to Django Models with South
+
+## 安装south
+``` dos
+pip install south
+```
+## 配置setting
+``` python
+INSTALLED_APPS = (
+    'joins',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.sites',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    # Uncomment the next line to enable the admin:
+    'django.contrib.admin',
+    # Uncomment the next line to enable admin documentation:
+    'django.contrib.admindocs',
+    'south'
+)
+```
+
+用south来控制joins的migration
+``` dos
+python manage.py convert_to_south joins
+```
+这条命令会创建history和初始的migration
+
+本地运行时，之前已有joins数据库，一个简单方法是直接删除joins/migrations,然后执行sync，将会从头执行
+``` dos
+python manage.py syncdb
+```
+将会创建表 south_migrationhistory, joins_join
+
+执行修改
+``` dos
+python manage.py schemamigration joins –auto
+```
+
+migrate db
+``` dos
+python manage.py migrate joins
+```
+
+https://github.com/codingforentrepreneurs/Guides/blob/master/all/using_south_in_django.md
+<pre>
+1)	Install south : pip install south, add south to settings.py in INSTALLED APPS
+2)	Ensure model is in sync in database
+3)	Covert the model to south with : python manage.py convert_to_south appname
+4)	Make changes to model (eg add new fields : ip_address = model.CharField(max_length=120
+5)	Run schemamigration : python manage.py schemamigration appname  --auto
+6)	Run migrate : python mange.py migrate
+</pre>
+
+
+
+
+
 
 
 
