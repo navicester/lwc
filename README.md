@@ -298,9 +298,296 @@ https://github.com/codingforentrepreneurs/Guides/blob/master/all/using_south_in_
 6)	Run migrate : python mange.py migrate
 </pre>
 
+# 09 Get User IP Address from Requests
+获取ip包括以下几个步骤
+- Join添加ip字段
+- 更新join form的显示，ip这个字段并不开放给用户
+- 从request.META.get里获取ip
+- 在form处理时把这个ip存进join
+
+https://github.com/codingforentrepreneurs/Guides/blob/master/all/using_south_in_django.md
+
+*views.py*
+``` python
+def get_ip(request):
+	try:
+		x_forward = request.META.get("HTTP_X_FORWORDED_FOR")
+		if x_forward:
+			ip = x_forward.split(',')[0]
+		else:
+			ip = request.META.get("REMOTE_ADDR")
+	except:
+		ip = ""
+	return ip
 
 
+def home(request):
+	'''
+	form = EmailForm(request.POST or None)
+	if form.is_valid():
+		email =  form.cleaned_data['email']
+		new_join, created = Joins.objects.get_or_create(email=email)
+		print new_join, created
+	'''
 
+	form = JoinForm(request.POST or None)
+	if form.is_valid():
+		new_join = form.save(commit = False)
+		email = form.cleaned_data['email']
+		new_join_old, created = Join.objects.get_or_create(email = email)
+		if created:
+			new_join_old.ip_address = get_ip(request)
+			new_join_old.save()
+		
+	context = {"form":form}
+	template = "home.html"
+	return render(request, template, context)
+
+class Join(models.Model):
+	email =  models.EmailField(unique = True)
+	ip_address =  models.CharField(max_length = 120, default = 'ABC')
+	timestamp = models.DateTimeField(auto_now_add = True, auto_now = False)
+	updated = models.DateTimeField(auto_now_add = False, auto_now = True)
+
+	def __unicode__(self):
+		return "%s " %(self.email)
+
+class JoinForm(forms.ModelForm):
+	class Meta:
+		model = Join
+		fields = ['email',] #只显示email
+```		
+
+# 10 Create Custom Reference ID
+Reference处理包括以下几个步骤
+- 在join添加ref_id字段
+- 从uuid里面拿出值，并置成ref_id
+- 在form POST处理时把这个字段存进join
+
+运行 `python manage.py shell`
+``` dos
+>>> import uuid
+>>> uuid.uuid4()
+```
+
+``` python
+class Join(models.Model):
+	email =  models.EmailField(unique = True)
++	ref_id = models.CharField(max_length=120, default='ABC', unique=True)
+	ip_address =  models.CharField(max_length = 120, default = 'ABC')
+	timestamp = models.DateTimeField(auto_now_add = True, auto_now = False)
+	updated = models.DateTimeField(auto_now_add = False, auto_now = True)
+
+	def __unicode__(self):
+		return "%s %s" %(self.email, self.ref_id)
+
++	class Meta:
++		unique_together = ("email", "ref_id",)
+
++import uuid
++def get_ref_id():
++	ref_id = str(uuid.uuid4())[:11].replace('-','').lower()
++	try:
++		id_exists = Join.objects.get(ref_id=ref_id)
++		get_ref_id()
++	except:
++		return ref_id
+
+
+def home(request):
+	form = JoinForm(request.POST or None)
+	if form.is_valid():
+		new_join = form.save(commit = False)
+		email = form.cleaned_data['email']
+		new_join_old, created = Join.objects.get_or_create(email = email)
+		if created:
++			new_join_old.ref_id = get_ref_id()
+			new_join_old.ip_address = get_ip(request)
+			new_join_old.save()
+		
+	context = {"form":form}
+	template = "home.html"
+	return render(request, template, context)
+```
+
+# 11 Create a Social Sharing Page to Share
+创建分享页
+- 添加url
+- 将email字段unique去掉
+- 添加分享页view
+- 添加分享页template
+- 添加view中重定向到分享页的处理
+
+``` python
+urlpatterns = patterns('',
+    url(r'^(?P<ref_id>.*)$', 'joins.views.share', name='share'),
+)
+
+from django.shortcuts import render, HttpResponseRedirect
+def home(request):
+
+	form = JoinForm(request.POST or None)
+	if form.is_valid():
+		new_join = form.save(commit = False)
+		email = form.cleaned_data['email']
+		new_join_old, created = Join.objects.get_or_create(email = email)
+		if created:
+			new_join_old.ref_id = get_ref_id()
+			new_join_old.ip_address = get_ip(request)
+			new_join_old.save()
++		return HttpResponseRedirect("/%s" %(new_join_old.ref_id))
+		
+	context = {"form":form}
+	template = "home.html"
+	return render(request, template, context)
+
+class Join(models.Model):
+-	email =  models.EmailField(unique = True)
++	email =  models.EmailField()
+	friend = models.ForeignKey("self", related_name='referral', null=True, blank=True)
+	ref_id = models.CharField(max_length=120, default='ABC', unique=True)
+	ip_address =  models.CharField(max_length = 120, default = 'ABC')
+	timestamp = models.DateTimeField(auto_now_add = True, auto_now = False)
+	updated = models.DateTimeField(auto_now_add = False, auto_now = True)
+
+	def __unicode__(self):
+		return "%s %s" %(self.email, self.ref_id)
+	
+	class Meta:
+		unique_together = ("email", "ref_id",)
+```		
+email unique改成False，否则Join的时候check不过
+
+*joins/views.py*添加分享处理函数
+``` python
+def share(request, ref_id):
+join_obj = Join.objects.get(ref_id=ref_id)
+context = {"ref_id": join_obj.ref_id }
+    template = "share.html"
+    return render(request, template, context)	
+```
+
+*templates/share.html*
+``` html
+{% extends "base.html" %}
+
+{% block content %}
+{% include "navbar.html" %}
+
+ref_id : {{ref_id}}
+
+{% endblock %}
+```
+
+# 12 Use Custom Django Middleware to Track Shares
+添加middleware处理分享页
+- 添加middleware类
+- 从middleware中获取reference值 (url中的内容)，并将这个值存入session
+- 在view中将session中的值拿到，并根据这个值get到join
+
+https://docs.djangoproject.com/en/1.10/topics/http/middleware/
+``` python
+MIDDLEWARE_CLASSES = (
+    'django.middleware.common.CommonMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    # Uncomment the next line for simple clickjacking protection:
+    # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
++    'lwc.middleware.ReferMiddleware',
+)
+```
+
+创建*lwc/middleware.py*
+``` python
+from joins.models import Join
+
+class ReferMiddleware():
+	def process_request(self, request):
+		ref_id = request.GET.get("ref")
+		try:
+			obj = Join.objects.get(ref_id = ref_id)
+		except:
+			obj = None
+			
+		if obj:
+			request.session['join_id_ref'] = obj.id
+```
+
+在home里增加对session结果的处理
+``` python
+def home(request):
++	try:
++		join_id = request.session['join_id_ref']
++		obj = Join.objects.get(id=join_id)
++	except:
++		obj = None	
+
+	form = JoinForm(request.POST or None)
+	if form.is_valid():
+		new_join = form.save(commit = False)
+		email = form.cleaned_data['email']
+		new_join_old, created = Join.objects.get_or_create(email = email)
+		if created:
+			new_join_old.ref_id = get_ref_id()
+			new_join_old.ip_address = get_ip(request)
+			new_join_old.save()
+		return HttpResponseRedirect("/%s" %(new_join_old.ref_id))
+		
+	context = {"form":form}
+	template = "home.html"
+	return render(request, template, context)
+```
+
+13 Save Reference ID with Foreign Key Model Fields
+添加Friend，用reference id作为索引
+- 在join model中添加friend字段
+- 在view中将join object存为friend
+
+添加friend字段
+``` python
+class Join(models.Model):
+	email =  models.EmailField()
++	friend = models.ForeignKey("self", related_name='referral', null=True, blank=True)
+	ref_id = models.CharField(max_length=120, default='ABC', unique=True)
+	ip_address =  models.CharField(max_length = 120, default = 'ABC')
+	timestamp = models.DateTimeField(auto_now_add = True, auto_now = False)
+	updated = models.DateTimeField(auto_now_add = False, auto_now = True)
+
+	def __unicode__(self):
+		return "%s %s" %(self.email, self.ref_id)
+	
+	class Meta:
+		unique_together = ("email", "ref_id",)
+```
+
+后台处理中将join对象存储为friend
+``` python
+def home(request):
+	try:
+		join_id = request.session['join_id_ref']
+		obj = Join.objects.get(id=join_id)
+	except:
+		obj = None	
+
+	form = JoinForm(request.POST or None)
+	if form.is_valid():
+		new_join = form.save(commit = False)
+		email = form.cleaned_data['email']
+		new_join_old, created = Join.objects.get_or_create(email = email)
+		if created:
+			new_join_old.ref_id = get_ref_id()
++			if not obj == None:
++				new_join_old.friend = obj
+			new_join_old.ip_address = get_ip(request)
+			new_join_old.save()
+		return HttpResponseRedirect("/%s" %(new_join_old.ref_id))
+		
+	context = {"form":form}
+	template = "home.html"
+	return render(request, template, context)
+```
 
 
 
